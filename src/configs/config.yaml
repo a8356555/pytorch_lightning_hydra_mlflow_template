@@ -1,0 +1,87 @@
+# if nothin is passed then the key will not be existed
+defaults:
+  - data: dataset_custom
+  # backbone
+  - backbone: custom_net 
+  - head: 
+  - optimizer: SGD
+  # input nothing if lr_scheduler is not used then the key wont exist
+  - lr_scheduler:
+  
+loss: 
+  name: CrossEntropyLoss # or losses in pytorch-metric-learning when training approach is single  
+      
+seed: 666
+gpus: 1
+global_batch_size: 4096
+batch_size: 128
+n_epochs: 120
+# multi_task: false
+num_workers: 4
+pin_memory: True
+
+is_train_shuffled: True
+# pre read image using multiprocessing, the very first time set to true
+mp_pre_read: False
+
+
+# data_augmentation
+# not apply if prob is 0
+aug_broadcast_gray_scale: True
+# [normal, smallest, longest]
+# if smallest or longest is selected, then value in the list aug_resize_h_w will bew random choose for max size
+aug_resize_method: normal
+aug_resize_prob: 0.
+aug_resize_h_w: [120, 160]
+# [center, random]
+aug_crop_method: center
+aug_crop_prob: 0.
+aug_crop_h_w: [120, 120]
+# random flip
+aug_h_v_flip_prob: [0.5, 0.5]
+# normalize method [center / imagenet]
+# Center: I'= I/127.5 - 1
+# Normalize: I' = I/255.0
+aug_norm_method: center 
+aug_mean:
+aug_std: 
+# shift scale rotate
+aug_ssr_value: [0.1, 0.05, 45]
+aug_ssr_prob: 0.
+# gamma color adjustment. [0.9, 1.1]
+aug_gamma_range: [0.9, 1.1]
+aug_gamma_prob: 0.75
+
+mixed_precision: 
+  enable: True
+  # [natvie, apex]
+  backend: apex
+  # 8 16 32
+  precision: 16
+  # [O1, O2, O3]
+  amp_level: 'O2'
+
+checkpoint:
+  # [val_acc, val_loss, val_k_fold_acc, val_auc]
+  monitor: val_k_fold_acc
+  save_top_k_models: 1
+  save_every_n_epoch: 3
+  mode: max
+
+resume_from_checkpoint:
+  enable: false
+  previous_run_id:
+
+logger:
+  log_every_n_steps: 300
+
+mlflow:
+  url: "http://0.0.0.0:5000/"
+  experiment_name: "AI_Witness"
+  tag: "w h 120"
+
+# @package _global_
+hydra:
+  output_subdir: .hydra/${now:%Y-%m-%d_%H-%M-%S}
+  run:
+    dir: logs

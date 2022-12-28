@@ -1,0 +1,7 @@
+name: CosineAnnealingWarmRestarts
+# set optimizer.lr as the max lr
+# first restart at T_0 
+T_0: 10
+# cycle_length *= T_mul
+T_mult: 2
+eta_min: 0

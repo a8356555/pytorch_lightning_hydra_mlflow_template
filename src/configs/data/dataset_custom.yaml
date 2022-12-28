@@ -1,0 +1,4 @@
+dataset_postfix: _custom
+df_info_dir: final/dataset_custom
+rel_data_dir: final/dataset_custom
+label:

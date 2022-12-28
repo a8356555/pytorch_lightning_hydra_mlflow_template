@@ -1,0 +1,7 @@
+name: CyclicLR
+base_lr: 1e-5
+max_lr: 0.01
+# half cycle length
+step_size_up: 20
+# [triangular2, triangular, exp_range]
+mode: triangular2

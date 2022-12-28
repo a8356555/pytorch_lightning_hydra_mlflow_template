@@ -1,0 +1,10 @@
+# @package _group_
+# https://keras.io/api/optimizers/sgd/
+name: SGD
+lr: 0.001
+momentum: 0.9
+dampening: 0
+weight_decay: 0
+nesterov: True
+# [all, last, last_linear, custom_last_linear]
+layer_to_update: all

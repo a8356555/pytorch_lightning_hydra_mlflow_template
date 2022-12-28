@@ -1,0 +1,11 @@
+name: ReduceLROnPlateau
+# set optimizer.lr as the max lr
+# min for loss max for acc
+mode: max
+factor: 0.7
+patience: 10
+# only focus on significant changes
+threshold: 1e-3
+# number of epochs not calculated after lr changed
+cooldown: 0
+min_lr: 1e-5

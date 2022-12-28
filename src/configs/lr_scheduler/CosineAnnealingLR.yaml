@@ -1,0 +1,5 @@
+name: CosineAnnealingLR
+# set optimizer.lr as the max lr
+# cycle length
+T_max: 25
+eta_min: 0

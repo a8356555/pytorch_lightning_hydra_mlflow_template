@@ -1,0 +1,9 @@
+# @package _group_
+# https://keras.io/api/optimizers/Nadam/
+name: AdamW
+lr: 0.001
+betas: [0.9, 0.99]
+eps: 1e-08
+weight_decay: 0.05
+amsgrad: False
+layer_to_update: all
